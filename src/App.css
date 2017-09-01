@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css?family=Lato|Lobster");
+
+body {
+    background: url("https://source.unsplash.com/EUhk0hrHaFY");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Lobster';
+    color: white;
+
+}
+
+html {
+    height: 100%;
+}
+
+h1 {
+
+    font-family: 'Lobster';
+    font-size: 8em;
+}
+
+.number-rating {
+    width: 110px;
+    margin: auto;
+}
+
+.thumbnailHr {
+    margin-bottom: 5px;
+}
+
+.goRight .ng-binding {
+    text-align: right;
+}
+
+.thumbnail {
+    background-color: indianred;
+    border: hidden;
+}
+
+.thumbnail img {
+    height: 250px;
+    background-color: black;
+}
+
+.navbar {
+
+
+}
+
+.artistInfo {
+    font-family: lobster;
+    font-size: 2em;
+    color: white;
+    text-align: center;
+    padding: 20px 20px;
+}
+
+.artistPortrait {
+    max-width: 400px;
+    max-height: 200px;
+
+}
+
+.artistList {
+    width: 50%;
+    padding: 0 0 0 0;
+}
+
+.artistList.container {
+    margin: auto;
+}
+
+#content {
+    font-family: 'Lobster';
+    text-align: center;
+    padding-top: 25%;
+    color: white;
+
+}
+
+#voteContent {
+    text-align: center;
+    padding-top: 10%;
+}
+
+#innerContent {
+    text-shadow: 0px 4px 3px red,
+    0px 8px 13px orange;
+}
