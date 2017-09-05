@@ -7,7 +7,9 @@ import {bindActionCreators} from 'redux';
 import {Link} from 'react-router-dom';
 import _ from 'lodash';
 
+
 class Artists extends Component {
+
 
     componentDidMount() {
         this.props.fetchArtists();
@@ -15,46 +17,33 @@ class Artists extends Component {
 
     render() {
         return (
-            <div className="artistList container">
-                {this.renderArtists()}
+            <div className="row">
+                <div className="col-lg-3">
+                    {this.renderArtists()}
+                </div>
+                <div className="col-lg-9 artist-detail">
+                    <ArtistDetail/>
+                </div>
             </div>
+
         )
     }
 
-    renderDetails(id) {
-        console.log(this.props.selectedArtist.id);
-        if (id === this.props.selectedArtist.id) {
-            return <div>selected</div>
-        }
-    }
-
     renderArtists() {
-        console.log(this.props);
         return _.map(this.props.artists, artist => {
-
             return (
                 <div
-                    className="artistInfo"
+                    className="artist-list-entry"
                     key={artist.id}
                     onClick={() => this.props.selectArtist(artist)}
                 >
-                    <h1>
+                    <h1 className="artist-name">
                         {artist.name}
                     </h1>
-                    <h1>
-
-                    </h1>
-                    <ArtistDetail/>
-                    <div>
-                        {this.renderDetails(artist.id)}
-                    </div>
-
-                    <hr/>
                 </div>
             )
         })
     }
-
 }
 
 function mapStateToProps(state) {
@@ -64,12 +53,7 @@ function mapStateToProps(state) {
     };
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({selectArtist: selectArtist}, dispatch)
-}
-
 export default connect(mapStateToProps, {
-    mapDispatchToProps,
     fetchArtists: fetchArtists,
     selectArtist: selectArtist
 })(Artists);

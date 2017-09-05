@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 class App extends Component {
     render() {
         return (
-            <div>
+            <div className="app">
                 <NavBar/>
                 <BrowserRouter>
                     <div className="container">

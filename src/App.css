@@ -1,91 +1,46 @@
-@import url("https://fonts.googleapis.com/css?family=Lato|Lobster");
+.app{
+    font-family: "lobster";
+    transition: height 3s;
+}
 
-body {
-    background: url("https://source.unsplash.com/EUhk0hrHaFY");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    font-family: 'Lobster';
+.artist-detail{
+    border-radius: 25px;
+    background: gray;
+    padding: 2%;
+    margin: 0;
     color: white;
-
+    height: 50%;
+    transition: height 3s;
 }
 
-html {
-    height: 100%;
-}
-
-h1 {
-
-    font-family: 'Lobster';
-    font-size: 8em;
-}
-
-.number-rating {
-    width: 110px;
+.artist-detail-content{
     margin: auto;
 }
 
-.thumbnailHr {
-    margin-bottom: 5px;
+.artist-name{
+    cursor: pointer;
 }
 
-.goRight .ng-binding {
-    text-align: right;
+.artist-list-entry{
+    margin-bottom: 40px;
 }
 
-.thumbnail {
-    background-color: indianred;
-    border: hidden;
+.voteBar{
+    margin-top: 50px;
 }
 
-.thumbnail img {
-    height: 250px;
-    background-color: black;
+.btn{
+  font-family: "lobster";
 }
 
-.navbar {
-
-
+.text-help{
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-.artistInfo {
-    font-family: lobster;
-    font-size: 2em;
-    color: white;
-    text-align: center;
-    padding: 20px 20px;
+#submitButton{
+    margin:auto;
 }
 
-.artistPortrait {
-    max-width: 400px;
-    max-height: 200px;
-
-}
-
-.artistList {
-    width: 50%;
-    padding: 0 0 0 0;
-}
-
-.artistList.container {
-    margin: auto;
-}
-
-#content {
-    font-family: 'Lobster';
-    text-align: center;
-    padding-top: 25%;
-    color: white;
-
-}
-
-#voteContent {
-    text-align: center;
-    padding-top: 10%;
-}
-
-#innerContent {
-    text-shadow: 0px 4px 3px red,
-    0px 8px 13px orange;
+#voteButton{
+    margin-bottom: 20px;
 }
