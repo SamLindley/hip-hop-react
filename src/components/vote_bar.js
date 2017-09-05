@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
+import {postRatings} from "../actions/index";
 
 
 class VoteBar extends Component {
@@ -28,6 +29,7 @@ class VoteBar extends Component {
     onSubmit(values){
         console.log(values);
         console.log(this.props.selectedArtist.id);
+        this.props.postRatings(this.props.selectedArtist.id, values)
     }
 
     render() {
@@ -86,7 +88,7 @@ function mapStateToProps(state) {
     }
 }
 
-VoteBar = connect(mapStateToProps)(VoteBar);
+VoteBar = connect(mapStateToProps, {postRatings})(VoteBar);
 
 export default reduxForm({
     validate: validate,
