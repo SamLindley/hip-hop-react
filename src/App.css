@@ -17,6 +17,8 @@
     margin: 0;
     padding-right: 0;
     padding-left: 0;
+    transition: opacity 0.5s;
+    opacity: 1;
 }
 
 .navbar{

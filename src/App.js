@@ -4,6 +4,7 @@ import LandingPage from "./components/landing_page";
 import NavBar from "./components/navbar";
 import './App.css';
 import Artists from './components/artist_list';
+import ArtistDetail from './components/artist_detail';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -15,14 +16,12 @@ class App extends Component {
                 <NavBar/>
                 <BrowserRouter>
                     <div className="container">
-                        <Switch>
-                            <Route path="/" component={Artists}/>
-                        </Switch>
+                        <Artists/>
                     </div>
                 </BrowserRouter>
             </div>
-        );
+    );
     }
-}
+    }
 
-export default App;
+    export default App;
