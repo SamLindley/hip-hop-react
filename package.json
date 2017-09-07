@@ -6,6 +6,7 @@
     "axios": "^0.16.2",
     "bootstrap": "^4.0.0-alpha.6",
     "lodash": "^4.17.4",
+    "pitchfork": "latest",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.6.0",
     "react-addons-transition-group": "^15.6.0",
@@ -20,6 +21,7 @@
     "redux": "^3.7.2",
     "redux-form": "^7.0.3",
     "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.2.0",
     "semantic-ui-react": "^0.72.0",
     "semantic-ui-react-numberpicker": "0.0.1-b"
   },

@@ -6,6 +6,13 @@ import {postRatings} from "../actions/index";
 
 class VoteBar extends Component {
 
+    constructor(props){
+        super(props);
+        this.state = {
+            userVoted: false
+        }
+    }
+
     renderField(field){
 
         const {meta: {touched, error}} = field;
@@ -27,51 +34,91 @@ class VoteBar extends Component {
 
 
     onSubmit(values){
-        console.log(values);
-        console.log(this.props.selectedArtist.id);
-        this.props.postRatings(this.props.selectedArtist.id, values)
+        this.props.postRatings(this.props.selectedArtist.id, values);
+        this.setState({
+            userVoted: true
+        })
     }
 
     render() {
         const {handleSubmit} = this.props;
 
-        return (
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                <div className="row voteBar">
-
-                    <div className="col-6">
-                        <Field
-                            label="Flow Rating : : :"
-                            name="flow"
-                            component={this.renderField}
-                        />
-                    </div>
-
-                    <div className="col-6">
-                        <Field
-                            label="Wordplay Rating : : :"
-                            name="wordplay"
-                            component={this.renderField}
-                        />
-
-                    </div>
-                    <button id="submitButton" type="submit" className="btn btn-info">Submit</button>
+        if(this.state.userVoted){
+            return (
+                <div>
+                    <h1>Thanks for voting!</h1>
                 </div>
-            </form>
-
-        );
+            )
+        }else{
+            return (
+                <form id="voteForm" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                    <div className="row voteBar">
+                        <div className="col-4">
+                            <Field
+                                label="Flow Rating : : :"
+                                name="flow"
+                                component={this.renderField}
+                            />
+                        </div>
+                        <div className="col-4">
+                            <Field
+                                label="Wordplay Rating : : :"
+                                name="wordplay"
+                                component={this.renderField}
+                            />
+                        </div>
+                        <div className="col-4">
+                            <Field
+                                label="Consistency Rating : : :"
+                                name="consistency"
+                                component={this.renderField}
+                            />
+                        </div>
+                    </div>
+                    <div className="row voteBar">
+                        <div className="col-6">
+                            <Field
+                                label="Influence Rating : : :"
+                                name="influence"
+                                component={this.renderField}
+                            />
+                        </div>
+                        <div className="col-6">
+                            <Field
+                                label="Bangers Rating : : :"
+                                name="bangers"
+                                component={this.renderField}
+                            />
+                        </div>
+                        <button id="submitButton" type="submit" className="btn btn-info">Submit</button>
+                    </div>
+                </form>
+            );
+        }
     }
-    
-
 }
 
 function validate(values){
-    console.log(values);
     const errors = {};
     if(!values.wordplay){
         errors.wordplay = "Rate the words!";
     }else if(isNaN(values.wordplay) || (values.wordplay > 10 || values.wordplay < 0)){
         errors.wordplay = "A number between 0 and 10!";
+    }
+    if(!values.consistency){
+        errors.consistency = "Rate the consistency!";
+    }else if(isNaN(values.consistency) || (values.consistency > 10 || values.consistency < 0)){
+        errors.consistency = "A number between 0 and 10!";
+    }
+    if(!values.influence){
+        errors.influence = "Rate the influence!";
+    }else if(isNaN(values.influence) || (values.influence > 10 || values.influence < 0)){
+        errors.influence = "A number between 0 and 10!";
+    }
+    if(!values.bangers){
+        errors.bangers = "Rate the bangers!";
+    }else if(isNaN(values.bangers) || (values.bangers > 10 || values.bangers < 0)){
+        errors.bangers = "A number between 0 and 10!";
     }
     if(!values.flow){
         errors.flow = "Rate the flow!";
