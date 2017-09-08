@@ -7,6 +7,7 @@ import Artists from './components/artist_list';
 import ArtistDetail from './components/artist_detail';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import Base from "./components/base_component";
 
 
 class App extends Component {
@@ -16,12 +17,12 @@ class App extends Component {
                 <NavBar/>
                 <BrowserRouter>
                     <div className="container">
-                        <Artists/>
+                        <Base/>
                     </div>
                 </BrowserRouter>
             </div>
-    );
+        );
     }
-    }
+}
 
-    export default App;
+export default App;

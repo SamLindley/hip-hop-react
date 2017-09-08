@@ -13,35 +13,36 @@ import ReactDom, {findDOMNode} from "react-dom";
 class Artists extends Component {
 
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.fetchArtists();
         let elem = ReactDom.findDOMNode(this);
-        console.log(elem);
         // Set the opacity of the element to 0
         elem.style.opacity = 0;
-        window.requestAnimationFrame(function () {
-            // Now set a transition on the opacity
-            elem.style.transition = "opacity 7000ms";
-            // and set the opacity to 1
-            elem.style.opacity = 1;
-        })
+        setTimeout(function () {
+            console.log("hey");
+            window.requestAnimationFrame(function () {
+                // Now set a transition on the opacity
+                elem.style.transition = "opacity 7000ms";
+                // and set the opacity to 1
+                elem.style.opacity = 1;
+            })
+        }, 2000);
+
     }
 
     render() {
         return (
-            <div className="row">
-                <div className="col-lg-3">
-                    {this.renderArtists()}
-                </div>
-                <div className="col-lg-9 artist-detail">
-                    <ArtistDetail key={this.props.selectedArtist}/>
-                </div>
+            <div id="artist-list" className="container">
+                <h1 id="artist-list-header">-:Artist List:-</h1>
+                <hr/>
+                <hr/>
+                <hr/>
+                {this.renderArtists()}
             </div>
-
         )
     }
 
-    handleArtistClicked(artist){
+    handleArtistClicked(artist) {
         this.props.selectArtist(artist);
         this.props.newArtistSelected(true);
     }

@@ -42,6 +42,7 @@ class VoteBar extends Component {
 
     render() {
         const {handleSubmit} = this.props;
+        const allowedRatingString = "   (0-10)";
 
         if(this.state.userVoted){
             return (
@@ -55,21 +56,21 @@ class VoteBar extends Component {
                     <div className="row voteBar">
                         <div className="col-4">
                             <Field
-                                label="Flow Rating : : :"
+                                label={`Flow Rating : : :${allowedRatingString}`}
                                 name="flow"
                                 component={this.renderField}
                             />
                         </div>
                         <div className="col-4">
                             <Field
-                                label="Wordplay Rating : : :"
+                                label={`Wordplay Rating : : :${allowedRatingString}`}
                                 name="wordplay"
                                 component={this.renderField}
                             />
                         </div>
                         <div className="col-4">
                             <Field
-                                label="Consistency Rating : : :"
+                                label={`Consistency Rating : : :${allowedRatingString}`}
                                 name="consistency"
                                 component={this.renderField}
                             />
@@ -78,14 +79,14 @@ class VoteBar extends Component {
                     <div className="row voteBar">
                         <div className="col-6">
                             <Field
-                                label="Influence Rating : : :"
+                                label={`Influence rating : : :${allowedRatingString}`}
                                 name="influence"
                                 component={this.renderField}
                             />
                         </div>
                         <div className="col-6">
                             <Field
-                                label="Bangers Rating : : :"
+                                label={`Bangers rating : : :${allowedRatingString}`}
                                 name="bangers"
                                 component={this.renderField}
                             />

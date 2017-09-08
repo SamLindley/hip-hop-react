@@ -1,6 +1,4 @@
 import axios from 'axios';
-import p from "pitchfork";
-
 
 export const FETCH_ARTISTS = 'fetch-artists';
 export const SELECT_ARTIST = 'select-artist';

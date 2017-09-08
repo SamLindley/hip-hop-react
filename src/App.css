@@ -1,6 +1,85 @@
 .app{
     font-family: "lobster";
     transition: height 3s;
+
+}
+
+#arrow{
+    margin-right: 4%;
+    vertical-align: bottom;
+}
+
+#noArtistSelected{
+    animation: fade-in 2s linear;
+    text-align: center;
+}
+
+#banner{
+    margin-bottom: 40px;
+    font-size: 2em;
+    text-align: center;
+}
+
+#artist-list-header{
+    text-align: center;
+}
+
+#goatBanner{
+    font-size: 4em;
+    animation: fade-in 1s linear;
+}
+
+#goat{
+    animation: fade-in 1s linear;
+}
+
+#goatWhite{
+    color: white;
+}
+
+#toWhite{
+    color: white;
+}
+
+#to{
+    animation: fade-in 1s linear;
+}
+
+.fadeInName{
+    opacity: 1;
+    animation: fade 1.5s linear;
+}
+
+.fadeOut {
+    opacity: 1;
+    animation: fade 1s linear;
+}
+
+.fadeIn{
+    opacity: 0;
+    animation: fade-in 0.7s linear;
+}
+
+@keyframes fade-in {
+    100% {opacity: 1}
+    0% {opacity: 0}
+}
+
+@keyframes fade {
+    100% { opacity: 0 }
+    0% { opacity: 1 }
+}
+/* Fade-In Effect */
+.visible
+{
+    opacity: 1;
+    transition: opacity 2s linear;
+}
+/* Fade-Out Effect */
+.hidden
+{
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
 }
 
 .artist-detail{
@@ -11,6 +90,7 @@
     height: 50%;
     transition: height 3s;
     margin-bottom: 100px;
+
 }
 
 #collapse-wrapper{
@@ -117,4 +197,10 @@
     margin: 2% 2%;
     padding:3%;
 
+}
+
+#artist-list{
+    border: solid black 1px;
+    border-radius: 25px;
+    padding-top: 8%;
 }
