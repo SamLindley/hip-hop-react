@@ -58,6 +58,7 @@
 .fadeIn{
     opacity: 0;
     animation: fade-in 0.7s linear;
+    animation-fill-mode: forwards;
 }
 
 @keyframes fade-in {
@@ -80,6 +81,11 @@
 {
     opacity: 0;
     transition: visibility 0s 2s, opacity 2s linear;
+}
+
+.game-button{
+    margin-right: 40px;
+    font-family: "lobster";
 }
 
 .artist-detail{
@@ -165,6 +171,15 @@
     width: 380px;
     margin-right: 50px;
     transition: height 500ms 0ms, opacity 500ms 500ms;
+    border: solid #FF9999 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 0 1px #000000;
+}
+
+#artistPictureGame{
+    border-radius: 50%;
+    height: 500px;
+    width: 620px;
     border: solid #FF9999 10px;
     margin-bottom: 30px;
     box-shadow: 0 0 0 1px #000000;

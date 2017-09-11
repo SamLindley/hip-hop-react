@@ -8,16 +8,27 @@ import ArtistDetail from './components/artist_detail';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Base from "./components/base_component";
+import {connect} from "react-redux";
+import {fetchArtists} from "./actions/index";
+import Game from "./game/game_container";
 
 
 class App extends Component {
+
+    componentDidMount(){
+        this.props.fetchArtists();
+    }
+
     render() {
         return (
             <div className="app">
                 <NavBar/>
                 <BrowserRouter>
                     <div className="container">
-                        <Base/>
+                        <Switch>
+                            <Route path="/game" component={Game}/>
+                            <Route path="/" component={Base}/>
+                        </Switch>
                     </div>
                 </BrowserRouter>
             </div>
@@ -25,4 +36,6 @@ class App extends Component {
     }
 }
 
-export default App;
+export default connect(null, {
+    fetchArtists: fetchArtists,
+})(App);

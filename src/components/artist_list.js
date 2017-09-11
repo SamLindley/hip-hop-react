@@ -14,7 +14,7 @@ class Artists extends Component {
 
 
     componentDidMount() {
-        this.props.fetchArtists();
+
         let elem = ReactDom.findDOMNode(this);
         // Set the opacity of the element to 0
         elem.style.opacity = 0;

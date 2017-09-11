@@ -36,11 +36,16 @@ export default class Example extends React.Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink id="loginButton" onClick={this.handleLogIn}>{this.state.isLoggedIn? "Log OUT" : "LOG IN"}</NavLink>
+                                <NavLink href="/game">game</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/">About</NavLink>
+                                <NavLink id="loginButton"
+                                         onClick={this.handleLogIn}>{this.state.isLoggedIn ? "log out" : "log in"}</NavLink>
                             </NavItem>
+                            <NavItem>
+                                <NavLink href="/">about</NavLink>
+                            </NavItem>
+
                         </Nav>
                     </Collapse>
                 </Navbar>
@@ -51,7 +56,7 @@ export default class Example extends React.Component {
     }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return {
         currentUser: state.currentUser
     };
