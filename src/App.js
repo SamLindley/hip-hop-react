@@ -22,9 +22,11 @@ class App extends Component {
     render() {
         return (
             <div className="app">
+{/*
                 <NavBar/>
+*/}
                 <BrowserRouter>
-                    <div className="container">
+                    <div className="container" id="base">
                         <Switch>
                             <Route path="/game" component={Game}/>
                             <Route path="/" component={Base}/>

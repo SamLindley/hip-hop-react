@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import Game from './game';
+import ChatBox from './chatbox';
 
 class GameContainer extends Component {
 
     render() {
+
         if (Array.isArray(this.props.artists)) {
             return (
                 <div>
