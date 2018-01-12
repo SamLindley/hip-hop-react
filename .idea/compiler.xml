@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="kotlin-websockets" />
         <module name="kotlin_chat_server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="kotlin-websockets" target="1.5" />
       <module name="kotlin_chat_server" target="1.5" />
     </bytecodeTargetLevel>
   </component>

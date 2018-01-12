@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/goat-site.iml" filepath="$PROJECT_DIR$/.idea/goat-site.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kotlin_chat_server/kotlin-websockets.iml" filepath="$PROJECT_DIR$/kotlin_chat_server/kotlin-websockets.iml" />
       <module fileurl="file://$PROJECT_DIR$/kotlin_chat_server/kotlin_chat_server.iml" filepath="$PROJECT_DIR$/kotlin_chat_server/kotlin_chat_server.iml" />
     </modules>
   </component>

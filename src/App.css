@@ -158,11 +158,10 @@
 .navbar{
     padding-left: 20%;
     padding-right: 20%;
-
 }
 
 .artist-detail-content{
-    margin: 10%;
+    margin: 4%;
     padding: auto;
 }
 
@@ -221,8 +220,8 @@
 
 #artistPicture{
     border-radius: 50%;
-    height: 400px;
-    width: 500px;
+    height: 380px;
+    width: 470px;
     margin-right: 50px;
     transition: height 500ms 0ms, opacity 500ms 500ms;
     border: solid #FF9999 10px;
@@ -286,9 +285,9 @@
 }
 
 #base{
-    margin-left: 10%;
-    margin-right: 10%;
-    max-width: 80%;
+    margin-left: 3%;
+    margin-right: 3%;
+    max-width: 90%;
 }
 
 .countBadge{

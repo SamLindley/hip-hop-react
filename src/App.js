@@ -26,7 +26,7 @@ class App extends Component {
                 <NavBar/>
 */}
                 <BrowserRouter>
-                    <div className="container" id="base">
+                    <div id="base">
                         <Switch>
                             <Route path="/game" component={Game}/>
                             <Route path="/" component={Base}/>

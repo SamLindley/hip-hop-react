@@ -293,7 +293,7 @@ class ChatBox extends Component {
                         {this.generalChats()}
                         {html}
                     </div>
-                    <button id="convoButton">Start a new conversation</button>
+                    <button id="convoButton" className="game-button">Start a new conversation</button>
                 </div>
             )
         }
@@ -314,8 +314,8 @@ class ChatBox extends Component {
         const requests = this.state.offlineRequests.map(request => {
             return <div>
                 New friend request from {request.username}
-                <button onClick={this.acceptRequest.bind(this, request)}>Accept</button>
-                <button onClick={this.acceptRequest.bind(this, request)}>Decline</button>
+                <button className="game-button" onClick={this.acceptRequest.bind(this, request)}>Accept</button>
+                <button className="game-button" onClick={this.acceptRequest.bind(this, request)}>Decline</button>
             </div>
         });
         return <div>{requests}</div>
@@ -345,7 +345,7 @@ class ChatBox extends Component {
                                 <input className="textInput" placeholder="password" type="password" name="password" value={this.state.password}
                                        onChange={this.onChange.bind(this)}/>
                             </div>
-                            <button type="submit" form="nameForm">Log In</button>
+                            <button className="game-button" type="submit" form="nameForm">Log In</button>
                         </form>
                     </div>
                 </div>
@@ -415,7 +415,7 @@ class ChatBox extends Component {
                                         <input className="textInput" placeholder="password" type="password" name="password" value={this.state.password}
                                                onChange={this.onChange.bind(this)}/>
                                     </div>
-                                    <button type="submit" form="nameForm">Log In</button>
+                                    <button className="btn-info game-button" type="submit" form="nameForm">Log In</button>
                                 </form>
                             </div>
                         </div>
@@ -439,7 +439,7 @@ class ChatBox extends Component {
                             Message:
                             <input className="textInput" type="text" name="message" value={this.state.message}
                                    onChange={this.onChange.bind(this)}/>
-                            <button type="submit" form="messageForm">Send</button>
+                            <button className="game-button" type="submit" form="messageForm">Send</button>
                         </div>
                     </form>
 
