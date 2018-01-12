@@ -21,8 +21,6 @@ fun setupSpark(port: Int, webSocketAddress: String){
 //user object
 data class UserSessionInfo(val session: Session, var activeChatID: Int)
 
-
-
 //message object
 class Payload(val messageType: String, val data: Any)
 
@@ -141,8 +139,48 @@ class ChatWSHandler{
                     emit(userConnections[receiver]!!.session, Payload("friendRequest", payload))
                 }
             }
-            "acceptFriendRequest" ->{
-                val friendEmail = data.get("")
+            "acceptRequest" ->{
+                val username = data.get("acceptedByUsername").asText()
+                val userEmail = data.get("acceptedByEmail").asText()
+                val friendName = data.get("friendName").asText()
+                val friendEmail = data.get("friendEmail").asText()
+                dbHandler.addFriend(userEmail, friendEmail, friendName)
+                dbHandler.addFriend(friendEmail, userEmail, username)
+                val userFriends = dbHandler.getFriends(userEmail)
+                val friendFriends = dbHandler.getFriends(friendEmail)
+                emit(userConnections[userEmail]!!.session, Payload("friendsUpdate", userFriends))
+                if (userConnections.containsKey(friendEmail)){
+                    emit(userConnections[friendEmail]!!.session, Payload("friendsUpdate", friendFriends))
+                }
+            }
+            "newFriendChat" ->{
+                try {
+                    val memberEmails = ArrayList<String>()
+                    val userEmail = data.get("userEmail").asText()
+                    val friendEmail = data.get("friendEmail").asText()
+                    memberEmails.add(userEmail)
+                    memberEmails.add(friendEmail)
+                    val user = data.get("username").asText()
+                    val friend = data.get("friendName").asText()
+
+                    val cID = dbHandler.newConversation(userEmail, friend, memberEmails)
+                    val conversationID = ConversationID(user, cID.id)
+                    val friendObject = dbHandler.findUser(friendEmail)
+                    dbHandler.addConversationIDToUser(friendObject!!, conversationID)
+
+                    val friendConvoIDs = dbHandler.findUser(friendEmail)!!.conversationIDs
+                    val userConvoIDs = dbHandler.findUser(userEmail)!!.conversationIDs
+                    if (userConnections.containsKey(friendEmail)){
+                        emit(userConnections[friendEmail]!!.session, Payload("conversationUpdate", conversationID))
+                    }
+                    emit(userConnections[userEmail]!!.session, Payload("conversationUpdate", cID))
+
+
+
+                }catch (e: Exception){
+                    e.printStackTrace()
+                }
+
             }
         }
     }

@@ -20,7 +20,8 @@ class ChatBox extends Component {
             flaggedConversations: [],
             generalChat: ["Welcome to general chat"],
             offlineRequests: [],
-            onlineRequests: []
+            onlineRequests: [],
+            friends: []
         };
     }
 
@@ -38,10 +39,13 @@ class ChatBox extends Component {
                 this.setState({username: json.data.username});
                 this.setState({userConversations: json.data.conversationIDs});
                 this.setState({offlineRequests: json.data.friendRequests});
+                this.setState({friends: json.data.friends})
                 this.setState({isLoggedIn: true});
             }
             else if (json.messageType === "say") {
+                console.log(json.data);
                 const gc = this.state.generalChat;
+                const message = this.createMessage(json.data);
                 gc.push(json.data);
                 this.setState({generalChat: gc});
                 if (this.state.activeConversationID !== 0) {
@@ -86,7 +90,11 @@ class ChatBox extends Component {
 
             }
             else if (json.messageType === "conversationUpdate") {
-
+                const convos = this.state.userConversations;
+                convos.push(json.data);
+                this.setState({
+                    userConversations: convos
+                })
             }
             else if (json.messageType === "friendRequest") {
                 const onlineRequests = this.state.onlineRequests;
@@ -94,7 +102,11 @@ class ChatBox extends Component {
                 this.setState({
                     onlineRequests
                 });
-                console.log(onlineRequests)
+            }
+            else if (json.messageType === "friendsUpdate"){
+                this.setState({
+                    friends: json.data
+                })
             }
             /*
                         this.addMsgToChat(e)
@@ -115,10 +127,12 @@ class ChatBox extends Component {
         })
     }
 
-    addMsgToChat(e) {
-        let newChat = this.state.chat;
-        newChat.push(JSON.parse(e.data));
-        this.setState({chat: newChat});
+    createMessage(message){
+        return <div className="messageWrapper">
+            {message.username + ": " + message.message}<span
+            onClick={this.handleFriendReq.bind(this, message.userEmail)}
+            className="friendIcon"><Plus/></span>
+        </div>
     }
 
     onChange(e) {
@@ -171,13 +185,6 @@ class ChatBox extends Component {
         this.setState({message: ""})
     }
 
-    testJSONConvo(e) {
-        e.preventDefault();
-        this.ws.send(JSON.stringify({
-            type: "getUser"
-        }))
-    }
-
     handleFriendReq(email) {
         this.ws.send(JSON.stringify({
             type: "friendRequest",
@@ -187,16 +194,6 @@ class ChatBox extends Component {
                 receiver: email
             }
         }))
-    }
-
-    handleUserName(e) {
-        e.preventDefault();
-        this.setState({username: this.state.username});
-        this.ws.send(JSON.stringify({
-            type: "join",
-            data: this.state.username
-        }));
-        console.log(this.state.username)
     }
 
     handleUpdateCount(id) {
@@ -221,8 +218,32 @@ class ChatBox extends Component {
         }))
     }
 
+    friendList(){
+
+    }
+
     acceptRequest(request) {
-        console.log(request)
+        this.ws.send(JSON.stringify({
+            type: "acceptRequest",
+            data: {
+                acceptedByEmail: this.state.userEmail,
+                acceptedByUsername: this.state.username,
+                friendEmail: request.userEmail,
+                friendName: request.username
+            }
+        }))
+    }
+
+    startConversation(email, name){
+        this.ws.send(JSON.stringify({
+            type: "newFriendChat",
+            data: {
+                username: this.state.username,
+                userEmail: this.state.userEmail,
+                friendEmail: email,
+                friendName: name
+            }
+        }))
     }
 
     findSelected(conversation) {
@@ -326,10 +347,18 @@ class ChatBox extends Component {
     }
 
 
+
     scrollToBottom() {
         this.chatBox.scrollTop = this.chatBox.scrollHeight;
     }
 
+    showFriends(){
+        return this.state.friends.map(friend =>{
+            return <div onClick={this.startConversation.bind(this, friend.email, friend.name)}>
+                {friend.name}
+            </div>
+        })
+    }
 
     showChat() {
         if (!this.state.isLoggedIn) {
@@ -448,6 +477,12 @@ class ChatBox extends Component {
                     </div>
                     <div>
                         {this.handleOfflineRequests()}
+                    </div>
+                    <div>
+                        <div>
+                            My Friends:
+                        </div>
+                        {this.showFriends()}
                     </div>
                 </div>
 

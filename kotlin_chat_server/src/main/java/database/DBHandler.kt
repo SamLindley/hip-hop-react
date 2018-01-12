@@ -13,7 +13,7 @@ data class User(
         val friends: ArrayList<Friend>
 )
 
-data class Friend(val name: String, val email: String, val status: String)
+data class Friend(val name: String, val email: String)
 
 data class FriendRequest(val username: String, val userEmail: String)
 
@@ -24,6 +24,7 @@ class Conversation(val messages: ArrayList<Message>, val id: Int, val memberEmai
 class Message(val userEmail: String, val username: String, val message: String)
 
 class DBHandler {
+    var idGenerator = 100
 
     val RECEIVED = "RECEIVED"
     val REQUESTED = "REQUESTED"
@@ -57,12 +58,32 @@ class DBHandler {
         database.drop()
     }
 
+    fun newConversation(userEmail :String, name: String, memberEmails: ArrayList<String>): ConversationID{
+        val id = idGenerator++
+        val conversation = Conversation(ArrayList(), id, memberEmails)
+        val conversationID = ConversationID(name, id)
+        val userToUpdate = findUser(userEmail)
+        conversationCollection.insertOne(conversation)
+        addConversationIDToUser(userToUpdate!!, conversationID)
+        return conversationID
+    }
+
+    fun addFriend(userEmail: String, friendEmail: String, friendName: String){
+        val query = "{email:${userEmail.json}}"
+        val userFriends = userCollection.findOne(query)!!.friends
+        userFriends.add(Friend(friendName, friendEmail))
+        userCollection.updateOne(
+                query,
+                "{${MongoOperator.set}:{friends:${userFriends.json}}}"
+        )
+    }
+
     fun addUsernameToConversation() {
 
     }
 
-    fun addFriend(userEmail: String, friendEmail: String){
-
+    fun getFriends(email: String): ArrayList<Friend>{
+        return userCollection.findOne("{email:${email.json}}")!!.friends
     }
 
     fun addFriendRequest(sender: FriendRequest, receiver: String) {
@@ -82,6 +103,7 @@ class DBHandler {
                 "{${MongoOperator.set}:{conversationIDs:${chatIDs.json}}}"
         )
     }
+
 
     fun getConversation(id: Int): Conversation {
         return conversationCollection.findOne("{id:${id.json}}")!!
